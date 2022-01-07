@@ -1,0 +1,20 @@
+{% extends 'users/base.html' %}
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block content %}
+<h2>Сокра.тим</h2>
+<a href="{% url 'profile' %}">
+    <button class="btn btn-outline-success">Кабинет пользователя</button>
+</a>
+<section class="gallery">
+    <h3>Мои сертификаты</h3>
+    <div id="slider">
+      <div><img src="/pictures/diploma.png" class="img-thumbnail" alt="">Hello</div>
+      <div><img src="/pictures/Pyt_Tkinter_Django.png" class="img-thumbnail" alt=""></div>
+      <div><img src="/pictures/JavaScript.png" class="img-thumbnail" alt=""></div>
+    </div>
+  </section>
+
+{% endblock %}

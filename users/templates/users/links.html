@@ -1,0 +1,27 @@
+{% extends 'users/base.html' %}
+{% block title %}
+Сокращение ссылок
+{% endblock %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<form method="post" class="form-register">
+    {% csrf_token %}
+    {{ form.as_p }}
+     <button type="submit"  class="btn btn-outline-success">Сократить</button>
+</form>
+<hr>
+
+<h3>Доступные ссылки:</h3><br>
+
+{% for link in links %}
+<div>
+    <span id="link"><b>Ваша ссылка:</b></span>
+    <a href="http://{{ link.longLink }}" target="_blank">link/{{ link.shortLink }}</a>
+    <hr>
+</div>
+
+{% endfor %}
+
+
+{% endblock %}

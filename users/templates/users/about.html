@@ -1,0 +1,69 @@
+{% extends 'users/base.html' %}
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<h3>Общий стаж работы 10 лет: </h3>
+<h4>Количество мест работы: {{ page_obj.paginator.count }}</h4>
+    <div class="form-register">
+    {% for job in jobs %}
+        <div>
+            <h4>{{ job.title }}</h4>
+            <p>{{ job.description }}</p>
+            <p>Период работы:<b>{{ job.date_start|date:"M.Y" }} - {{ job.date_end|date:"M.Y" }}</b></p>
+            {% if job.img %}
+            <img src="{{ job.img.url }}" alt="{{ job.title }}">
+            {% else %}
+            <img src="/pictures/default.png" alt="{{ job.title }}">
+            {% endif %}
+            <p>Сайт компании:<a class="nav-link active" href="{{ job.site }}" target="_blank">{{job.site}}</a></p>
+            <br>
+
+        </div>
+
+        <hr>
+
+    {% endfor %}
+
+    </div>
+      {% if is_paginated %}
+    {% if page_obj.has_previous %}
+      <a href="{% url 'about' %}" class="btn btn-outline-danger">Начало</a>
+      <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-danger">Предыдущая</a>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+      {% if num == page_obj.number %}
+        <button class="btn btn-danger">{{ num }}</button>
+      {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+        <a href="?page={{ num }}" class="btn btn-outline-danger">{{ num }}</a>
+      {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-danger">Следующая</a>
+      <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-danger">Последняя</a>
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
+{% block aside_block %}
+<h4>Личная информация:</h4>
+<h4 class="mt-2 ml-5">Фото:</h4>
+<img src="/pictures/me.jpg" class="img-thumbnail">
+<button class="btn btn-outline-info" onclick="clickBtn()">Мои данные</button>
+<h5>Личные данные</h5>
+<p class="block">Имя: Михаил </p>
+<p class="block">Пол: мужской </p>
+<p class="block">Возраст: 33 </p>
+<p class="block">Город: СПБ2</p>
+<h5>Контакты</h5>
+<details open class="block">
+    <summary>Телефон: 8(962)712-55-62</summary>
+    <p>Звонить с 8:30 до 23:30</p>
+</details>
+<p class="block">Email: lemike33@mail.ru </p>
+<p class="block">GitHub: lemike33 </p>
+
+{% endblock %}

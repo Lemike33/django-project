@@ -1,0 +1,22 @@
+{% extends 'users/base.html' %}
+{% block title %}
+Профиль пользователя
+{% endblock %}
+
+{% block content %}
+<h1>Кабинет пользователя</h1>
+<hr>
+<form method="get" class="form-register">
+<p>login пользователя: <b>{{ user.username}}</b></p>
+<br>
+<p>email пользователя: <b>{{ user.email}}</b></p>
+
+</form>
+<hr>
+<h1>Обновить данные</h1>
+<form method="post" class="form-register">
+    {% csrf_token %}
+    {{ updateUserForm.as_p }}
+    <button type="submit" class="btn btn-outline-info">Обновить</button>
+</form>
+{% endblock %}

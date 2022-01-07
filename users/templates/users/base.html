@@ -1,0 +1,98 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'users/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'users/css/slick.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">@Lemike33</a>
+
+        <div class="collapse navbar-collapse" id="navbarsExample09">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'start_page' %}">Главная</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'about' %}">Мое резюме</a>
+            </li>
+          </ul>
+          {% if not user.is_authenticated %}
+          <a href="{% url 'reg' %}">
+            <button class="btn btn-outline-warning">Регистрация</button>
+          </a>
+          <a href="{% url 'user' %}" class="ml-2">
+            <button class="btn btn-outline-info">Войти</button>
+          </a>
+          {% else %}
+            <a class="nav-link nav-item" href="{% url 'profile' %}">Профайл</a>
+            <a class="nav-link active" href="{% url 'links' %}">Ссылки</a>
+            <a href="{% url 'exit' %}" class="ml-2">
+            <button class="btn btn-outline-info">Выйти</button>
+            </a>
+          {% endif %}
+
+        </div>
+      </div>
+    </nav>
+<div class="container mt-5">
+        <div class="row">
+            <div class="col-md-9">
+            {% block content%}
+            {% endblock %}
+            </div>
+            <aside class="col-md-3">
+        {% block aside_block %}
+        {% endblock %}
+      </aside>
+      </div>
+</div>
+
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+      <div class="col-12 col-md">
+        <small class="d-block mb-3 text-muted">@Web Study 2021</small>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Сertificates</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="{% url 'start_page' %}">My sertificates</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Resources</h5>
+        <ul class="list-unstyled text-small">
+            {% if not user.is_authenticated %}
+              <li class="mb-1"><a class="link-secondary text-decoration-none" href="{% url 'reg' %}">Registration</a></li>
+            {% else %}
+              <li class="mb-1"><a class="link-secondary text-decoration-none" href="{% url 'links' %}">Shot Links</a></li>
+            {% endif %}
+
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>About</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="{% url 'about' %}">About me</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="{% static 'users/js/slick.min.js' %}"></script>
+<script src="{% static 'users/js/index.js' %}"></script>
+
+</body>
+</html>
+
+
+
