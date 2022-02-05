@@ -15,6 +15,7 @@
       <div><img src="/pictures/Pyt_Tkinter_Django.png" class="img-thumbnail" alt=""></div>
       <div><img src="/pictures/JavaScript.png" class="img-thumbnail" alt=""></div>
     </div>
+    <p>Вы посетили мою страницу уже: {{ num_visits }}{% if num_visits == 1 or num_visits >= 5 %} раз {% else %} раза{% endif %}</p>
   </section>
 
 {% endblock %}
