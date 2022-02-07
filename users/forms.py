@@ -40,7 +40,7 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class LinkForm(forms.ModelForm):
-    """ Веб-ресурс для, для добавления сокращаемых ссылок на сайт"""
+    """ Веб-ресурс (форма) для добавления сокращаемых ссылок на сайт"""
     class Meta:
         model = Link
         # все поля из таблицы Link

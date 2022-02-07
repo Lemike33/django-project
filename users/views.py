@@ -1,15 +1,18 @@
+import logging
 from django.shortcuts import render, redirect
 from .forms import UserRegisterForm, UserUpdateForm, LinkForm
 from django.contrib.auth.decorators import login_required
 from .models import Link
 from django.views.generic import ListView, CreateView
 
+logger = logging.getLogger(__name__)
 
 def open_to_main_page(request):
     """ Переход на главную страницу сайта """
     # Number of visits to this view, as counted in the session variable.
     num_visits = request.session.get('num_visits', 1)
     request.session['num_visits'] = num_visits + 1
+    logger.info('new visits') #  info message about new visits of main page
     return render(request, 'users/start.html',
     context = {'num_visits':num_visits},
     )
@@ -42,6 +45,7 @@ def open_to_profile_page(request):
 
         if updateUserForm.is_valid():
             updateUserForm.save()
+            logger.warning(f'данные пользователя: {request.user.username} обновленны')
             return redirect('profile')
 
     else:
@@ -69,4 +73,5 @@ class CreateLinkView(CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        logger.warning('Новая ссылка добавленна!') #  message about created new short link
         return super().form_valid(form)
