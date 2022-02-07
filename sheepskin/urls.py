@@ -8,10 +8,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', userViews.start, name='start_page'),
-    #path('about', userViews.about, name='about'),
-    path('reg/', userViews.register, name='reg'),
-    path('profile/', userViews.profile, name='profile'),
+    path('', userViews.open_to_main_page, name='start_page'),
+    path('reg/', userViews.open_to_registration_page, name='reg'),
+    path('profile/', userViews.open_to_profile_page, name='profile'),
     path('links/', userViews.CreateLinkView.as_view(), name='links'),
     path('about', include('resume.urls')),
 

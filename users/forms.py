@@ -5,6 +5,7 @@ from .models import Link
 
 
 class UserRegisterForm(UserCreationForm):
+    """ стандартная форма заполнения регистрации исключая подтверждение пароля"""
     email = forms.EmailField(label='Введите Email', required=True,
     widget=forms.TextInput(attrs={'class': 'form-control',
     'placeholder': 'Введите ваш Email'}))
@@ -12,7 +13,6 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1']
-
         exclude = ['password2']
 
     def __init__(self, *args, **kwargs):
@@ -40,6 +40,7 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class LinkForm(forms.ModelForm):
+    """ Веб-ресурс для, для добавления сокращаемых ссылок на сайт"""
     class Meta:
         model = Link
         # все поля из таблицы Link

@@ -5,6 +5,7 @@ from django.utils import timezone
 
 
 class Job(models.Model):
+    """ класс - список всех рабочих мест """
     slug = models.SlugField(unique=True)  # url адресс перехода на детальную страницу работы
     title = models.CharField(max_length=140)
     description = models.TextField()
@@ -15,4 +16,9 @@ class Job(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = "Работа"
+        verbose_name_plural = "Мои работы"
+
 

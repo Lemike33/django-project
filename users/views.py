@@ -5,21 +5,18 @@ from .models import Link
 from django.views.generic import ListView, CreateView
 
 
-def start(request):
+def open_to_main_page(request):
+    """ Переход на главную страницу сайта """
     # Number of visits to this view, as counted in the session variable.
-    num_visits=request.session.get('num_visits', 1)
-    request.session['num_visits'] = num_visits+1
+    num_visits = request.session.get('num_visits', 1)
+    request.session['num_visits'] = num_visits + 1
     return render(request, 'users/start.html',
-    context={'num_visits':num_visits},
+    context = {'num_visits':num_visits},
     )
 
 
-
-def about(request):
-    return render(request, 'users/about.html')
-
-
-def register(request):
+def open_to_registration_page(request):
+    """ Переход на страницу регистрации и создание регистрации на сайте """
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -38,7 +35,8 @@ def register(request):
 
 
 @login_required()
-def profile(request):
+def open_to_profile_page(request):
+    """ Переход на страницу профайла и изменение данных зарегистрированного пользователя"""
     if request.method == "POST":
         updateUserForm = UserUpdateForm(request.POST, instance=request.user)
 
@@ -57,6 +55,7 @@ def profile(request):
 
 
 class CreateLinkView(CreateView):
+    """ класс для создания веб-сервиса по добавлению сокращаемых ссылок """
     model = Link
     template_name = 'users/links.html'
 
