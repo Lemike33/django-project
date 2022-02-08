@@ -17,6 +17,9 @@ class Job(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('about')
+
     class Meta:
         verbose_name = "Работа"
         verbose_name_plural = "Мои работы"
