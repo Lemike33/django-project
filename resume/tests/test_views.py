@@ -1,5 +1,5 @@
 from django.test import TestCase
-from resume.models import Job
+from ..models import Job
 from django.urls import reverse
 
 class WorkPageListTest(TestCase):

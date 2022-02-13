@@ -7,6 +7,10 @@ __pycache__/
 
 # C extensions
 *.so
+# log files
+*.log
+# Files of BD
+*.sqlite3
 
 # Distribution / packaging
 .Python
