@@ -14,14 +14,16 @@
 
 <h3>Доступные ссылки:</h3><br>
 
-{% for link in links %}
-<div>
-    <span id="link"><b>Ваша ссылка:</b></span>
-    <a href="http://{{ link.longLink }}" target="_blank">link/{{ link.shortLink }}</a>
-    <hr>
-</div>
+  {% for link in links %}
+  <div>
+      <span id="link"><b>Ваша ссылка:</b></span>
+      <a href="http://{{ link.longLink }}" target="_blank">link/{{ link.shortLink }}</a>
+      <p>Описние ссылки перехода: {{ link.description }}</p>
+      <hr>
+  </div>
 
-{% endfor %}
+  {% endfor %}
 
 
 {% endblock %}
+

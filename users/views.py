@@ -7,15 +7,14 @@ from django.views.generic import ListView, CreateView
 
 logger = logging.getLogger(__name__)
 
+
 def open_to_main_page(request):
     """ Переход на главную страницу сайта """
     # Number of visits to this view, as counted in the session variable.
     num_visits = request.session.get('num_visits', 1)
     request.session['num_visits'] = num_visits + 1
-    logger.info('new visits') #  info message about new visits of main page
-    return render(request, 'users/start.html',
-    context = {'num_visits':num_visits},
-    )
+    logger.info('new visits')  # info message about new visits of main page
+    return render(request, 'users/start.html', context={'num_visits': num_visits},)
 
 
 def open_to_registration_page(request):
@@ -63,7 +62,7 @@ class CreateLinkView(CreateView):
     model = Link
     template_name = 'users/links.html'
 
-    fields = ['longLink', 'shortLink']
+    fields = ['longLink', 'shortLink', 'description']
 
     def get_context_data(self, *, object_list=None, **kwargs):
         ctx = super(CreateLinkView, self).get_context_data(**kwargs)
@@ -73,5 +72,5 @@ class CreateLinkView(CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        logger.warning('Новая ссылка добавленна!') #  message about created new short link
+        logger.warning('Новая ссылка добавленна!')  # message about created new short link
         return super().form_valid(form)

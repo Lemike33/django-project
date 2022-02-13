@@ -8,11 +8,6 @@ __pycache__/
 /.gitignore
 # C extensions
 *.so
-# log files
-# Files of BD
-db.sqlite3
-
-# __pycache__
 
 # Distribution / packaging
 .Python

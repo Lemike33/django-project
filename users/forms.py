@@ -44,7 +44,7 @@ class LinkForm(forms.ModelForm):
     class Meta:
         model = Link
         # все поля из таблицы Link
-        fields = ['user', 'longLink', 'shortLink']
+        fields = ['user', 'longLink', 'shortLink', 'description']
 
         # поле user отображать не будем
         widgets = {'user': forms.HiddenInput()}
