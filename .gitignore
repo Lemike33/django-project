@@ -9,7 +9,7 @@ __pycache__/
 *.so
 # log files
 # Files of BD
-*.sqlite3
+db.sqlite3
 
 # __pycache__
 
